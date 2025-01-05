@@ -32,11 +32,6 @@ const App = (): React.ReactElement => {
   }, []);
 
   const handleTouchPress = (e: GestureResponderEvent): void => {
-    console.log(
-      'handleTouchPress',
-      Math.round(pixelRatio * e.nativeEvent.locationX),
-      Math.round(pixelRatio * e.nativeEvent.locationY)
-    );
     if (inputRef.current) {
       inputRef.current.handleTouchStart(
         vec2(e.nativeEvent.locationX, e.nativeEvent.locationY)
@@ -45,22 +40,12 @@ const App = (): React.ReactElement => {
   };
 
   const handleTouchRelease = (e: GestureResponderEvent): void => {
-    console.log(
-      'handleTouchRelease',
-      Math.round(pixelRatio * e.nativeEvent.locationX),
-      Math.round(pixelRatio * e.nativeEvent.locationY)
-    );
     if (inputRef.current) {
       inputRef.current.handleTouchEnd();
     }
   };
 
   const handleTouchMove = (e: GestureResponderEvent): void => {
-    console.log(
-      'handleTouchMove',
-      Math.round(pixelRatio * e.nativeEvent.locationX),
-      Math.round(pixelRatio * e.nativeEvent.locationY)
-    );
     if (inputRef.current) {
       inputRef.current.handleTouchMove(
         vec2(e.nativeEvent.locationX, e.nativeEvent.locationY)
@@ -76,7 +61,7 @@ const App = (): React.ReactElement => {
     await context.initializeText();
     contextRef.current = context;
 
-    const game = new Game(context);
+    const game = new Game(context, pixelRatio);
     game.initialise();
     gameRef.current = game;
 
@@ -84,25 +69,25 @@ const App = (): React.ReactElement => {
     inputRef.current = input;
   }, []);
 
-  return (<>
-    <SafeAreaView
-      style={{ flex: 0, backgroundColor: config.headerBackgroundColor }}
-      pointerEvents="none"
-    >
-
-    </SafeAreaView>
-    <SafeAreaView
-    style={{ flex: 1, backgroundColor: config.footerBackgroundColor }}
-  >
-    <GLView
-      style={{ flex: 1, backgroundColor: 'black' }}
-      onContextCreate={handleSetup}
-      onStartShouldSetResponder={() => true}
-      onResponderGrant={handleTouchPress}
-      onResponderRelease={handleTouchRelease}
-      onResponderMove={handleTouchMove}
-    />
-  </SafeAreaView></>
+  return (
+    <>
+      <SafeAreaView
+        style={{ flex: 0, backgroundColor: config.headerBackgroundColor }}
+        pointerEvents="none"
+      ></SafeAreaView>
+      <SafeAreaView
+        style={{ flex: 1, backgroundColor: config.footerBackgroundColor }}
+      >
+        <GLView
+          style={{ flex: 1, backgroundColor: 'black' }}
+          onContextCreate={handleSetup}
+          onStartShouldSetResponder={() => true}
+          onResponderGrant={handleTouchPress}
+          onResponderRelease={handleTouchRelease}
+          onResponderMove={handleTouchMove}
+        />
+      </SafeAreaView>
+    </>
   );
 };
 

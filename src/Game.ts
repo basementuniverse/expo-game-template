@@ -65,7 +65,6 @@ export default class Game {
     // Update code here...
 
     if (Input.touchDown()) {
-      console.log(vec2.str(Input.touchPosition()));
       this.actors.push({
         p: Input.touchPosition(),
         v: vec2(randomBetween(-1, 1), randomBetween(-1, 1)),

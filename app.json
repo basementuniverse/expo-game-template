@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "game-test-01",
-    "slug": "game-test-01",
+    "name": "game-template",
+    "slug": "game-template",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
@@ -13,13 +13,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gordonlarrigan.gametemplate"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.gordonlarrigan.gametemplate"
     },
     "web": {
       "favicon": "./assets/favicon.png"
